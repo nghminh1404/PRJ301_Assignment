@@ -4,9 +4,17 @@
         <servlet-name>studentListByGroup</servlet-name>
         <servlet-class>ControllerSt.studentListByGroup</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ScheduleController</servlet-name>
+        <servlet-class>ControllerSt.ScheduleController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>studentListByGroup</servlet-name>
         <url-pattern>/student/group</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ScheduleController</servlet-name>
+        <url-pattern>/Schedule</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -4,10 +4,29 @@
  */
 package model;
 
+import java.sql.Date;
 /**
  *
  * @author PC
  */
 public class TimeSlot {
+     private int slot;
+     private String time;
+
+     public int getSlot() {
+          return slot;
+     }
+
+     public void setSlot(int slot) {
+          this.slot = slot;
+     }
+
+     public String getTime() {
+          return time;
+     }
+
+     public void setTime(String time) {
+          this.time = time;
+     }
      
 }
