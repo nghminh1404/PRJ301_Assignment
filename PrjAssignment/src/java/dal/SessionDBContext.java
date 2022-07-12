@@ -4,10 +4,96 @@
  */
 package dal;
 
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import model.Course;
+import model.Group;
+import model.Instructor;
+import model.Room;
+import model.Session;
+import model.TimeSlot;
+
 /**
  *
  * @author PC
  */
-public class SessionDBContext {
-     
+public class SessionDBContext extends DBContext<Session> {
+
+     public ArrayList<Session> getSessionByWeek(Date startWeek, Date endWeek) {
+          ArrayList<Session> sessions = new ArrayList<>();
+          try {
+               String sql = "Select ts.Slot,ts.[Time],se.SessionID,se.SessionNumber,se.[date],se.roomID,se.insID,g.gid,g.GroupName,g.Insid,c.id,c.[Name] from [Time] ts\n"
+                       + "join [Session] se On ts.Slot = se.timeslot \n"
+                       + "join [Group] g On se.GroupID = g.gid\n"
+                       + "join Course c On g.cid = c.id\n"
+                       + "join Instructor i on se.insID = i.id\n"
+                       + "Where se.[date] Between ? And ?";
+               PreparedStatement stm = connection.prepareStatement(sql);
+               stm.setDate(1, startWeek);
+               stm.setDate(2, endWeek);
+               ResultSet rs = stm.executeQuery();
+               while (rs.next()) {
+                    Session se = new Session();
+                    se.setSessionID(rs.getInt("SessionID"));
+                    se.setSessionNumber(rs.getInt("SessionNumber"));
+                    se.setDate(rs.getDate("SessionDate"));
+                    Instructor ise = new Instructor();
+                    ise.setId(rs.getString("InstructorID"));
+                    se.setInstructor(ise);
+                    Room r = new Room();
+                    r.setRoom(rs.getString("RoomID"));
+                    se.setRoom(r);
+                    Group g = new Group();
+                    g.setGid(rs.getInt("GroupID"));
+                    g.setGroupname(rs.getString("GroupName"));
+                    Instructor i = new Instructor();
+                    i.setId(rs.getString("InstructorID"));
+                    g.setIns(i);
+                    Course c = new Course();
+                    c.setId(rs.getString("CourseID"));
+                    c.setName(rs.getString("CourseName"));
+                    g.setCourse(c);
+                    se.setGroupID(g);
+                    TimeSlot ts = new TimeSlot();
+                    ts.setSlot(rs.getInt("TimeslotID"));
+                    ts.setTime(rs.getString("Time"));
+                    se.setTimeslot(ts);
+                    sessions.add(se);
+               }
+          } catch (SQLException ex) {
+               Logger.getLogger(SessionDBContext.class.getName()).log(Level.SEVERE, null, ex);
+          }
+          return sessions;
+     }
+
+     @Override
+     public ArrayList<Session> list() {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public Session get(int id) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public void insert(Session model) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public void update(Session model) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public void delete(Session model) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
 }

@@ -1,20 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>pagesize</param-name>
+        <param-value>7</param-value>
+    </context-param>
     <servlet>
-        <servlet-name>studentListByGroup</servlet-name>
-        <servlet-class>ControllerSt.studentListByGroup</servlet-class>
+        <servlet-name>ListControll</servlet-name>
+        <servlet-class>ControllerSt.ListControll</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>ScheduleController</servlet-name>
-        <servlet-class>ControllerSt.ScheduleController</servlet-class>
+        <servlet-name>groupStudentControll</servlet-name>
+        <servlet-class>ControllerSt.groupStudentControll</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CalenderControll</servlet-name>
+        <servlet-class>ControllerSt.CalenderControll</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>datetest</servlet-name>
+        <servlet-class>ControllerSt.datetest</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AuthenticationController</servlet-name>
+        <servlet-class>controller.AuthenticationController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>studentListByGroup</servlet-name>
-        <url-pattern>/student/group</url-pattern>
+        <servlet-name>ListControll</servlet-name>
+        <url-pattern>/list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>ScheduleController</servlet-name>
-        <url-pattern>/Schedule</url-pattern>
+        <servlet-name>groupStudentControll</servlet-name>
+        <url-pattern>/groupstudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CalenderControll</servlet-name>
+        <url-pattern>/calendar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>datetest</servlet-name>
+        <url-pattern>/datetest</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AuthenticationController</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

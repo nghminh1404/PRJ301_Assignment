@@ -10,8 +10,8 @@ import java.sql.Date;
  * @author PC
  */
 public class Session {
-     private String sessionID;
-     private String sessionNumber;
+     private int sessionID;
+     private int sessionNumber;
      private Group groupID;
      private Room room;
      private TimeSlot timeslot;
@@ -26,19 +26,19 @@ public class Session {
           this.instructor = instructor;
      }
 
-     public String getSessionID() {
+     public int getSessionID() {
           return sessionID;
      }
 
-     public void setSessionID(String sessionID) {
+     public void setSessionID(int sessionID) {
           this.sessionID = sessionID;
      }
 
-     public String getSessionNumber() {
+     public int getSessionNumber() {
           return sessionNumber;
      }
 
-     public void setSessionNumber(String sessionNumber) {
+     public void setSessionNumber(int sessionNumber) {
           this.sessionNumber = sessionNumber;
      }
 

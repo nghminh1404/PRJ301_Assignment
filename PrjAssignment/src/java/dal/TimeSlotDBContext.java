@@ -4,10 +4,38 @@
  */
 package dal;
 
+import java.util.ArrayList;
+import model.TimeSlot;
+
 /**
  *
  * @author PC
  */
-public class TimeSlotDBContext {
+public class TimeSlotDBContext extends DBContext<TimeSlot> {
+
+     @Override
+     public ArrayList<TimeSlot> list() {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public TimeSlot get(int id) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public void insert(TimeSlot model) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public void update(TimeSlot model) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
+
+     @Override
+     public void delete(TimeSlot model) {
+          throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+     }
      
 }
