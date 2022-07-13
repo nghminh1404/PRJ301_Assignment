@@ -10,7 +10,7 @@
            <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <script src="../js/pagger.js" type="text/javascript"></script>
+        <script src="js/pagger.js" type="text/javascript"></script>
         <link href="../css/pagger.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
@@ -27,8 +27,8 @@
         </table>
         <div id="bot_pagger" class="pagger"></div>
         <script>
-            pagger_render("top_pagger",${requestScope.pageindex},${requestScope.totalpage},7);
-            pagger_render("bot_pagger",${requestScope.pageindex},${requestScope.totalpage},7);
+            pagger_render("top_pagger",${requestScope.pageindex},${requestScope.totalpage},2);
+            pagger_render("bot_pagger",${requestScope.pageindex},${requestScope.totalpage},2);
         </script>
     </body>
 </html>

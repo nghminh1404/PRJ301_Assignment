@@ -23,7 +23,7 @@
         </script>
     </head>
     <body>
-        <form id="frmSearch" action="group" method="POST">
+        <form id="frmSearch" action="groupstudent" method="POST">
             Group: <select name="gid" 
                                 onchange="document.getElementById('frmSearch').submit();">
                 <c:forEach items="${requestScope.grs}" var="g">
@@ -52,8 +52,8 @@
                         <td>${e.memberCode}</td>
                         <td>${e.fullName}</td>
                         <td>${e.group.groupname}</td>
-                        <td><input type="radio" name="status" value="present"/>Present
-                            <input type="radio" name="status" checked="checked" value="absent"/>Absent</td>
+                        <td><input type="radio" name="status_${e.sid}" value="present"/>Present
+                            <input type="radio" name="status_${e.sid}" checked="checked" value="absent"/>Absent</td>
                         <td><input type="text" name="description"/></td>
                         <td><input type="hidden" a href="update?id=${e.sid}"></a></td>
                         <td><input type="button" hidden value="Delete" onclick="removeEmp(${e.sid})"></td>

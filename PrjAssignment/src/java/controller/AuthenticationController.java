@@ -64,9 +64,12 @@ public class AuthenticationController extends HttpServlet {
           String password = request.getParameter("pass");
           AccountDBContext db = new AccountDBContext();
           Account account = db.get(username, password);
+          boolean status = true;
           if (account == null) {
+               status = false;
+               request.setAttribute("status",status);
                request.getRequestDispatcher("view/account/login.jsp").forward(request, response);
-
+               
           } else {
                HttpSession session = request.getSession();
                session.setAttribute("account", account);
