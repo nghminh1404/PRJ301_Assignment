@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Account;
+import model.Instructor;
+import model.Student;
 
 /**
  *
@@ -18,12 +20,14 @@ import model.Account;
  */
 public class AccountDBContext extends DBContext<Account> {
 
-     public Account get(String username, String password) {
+     public Account getAccount(String username, String password) {
           try {
                String sql = "SELECT username\n"
                        + "      ,[password]\n"
                        + "      ,[isAdmin]\n"
                        + "      ,displayname\n"
+                       + "      ,sid\n"
+                       + "      ,insid\n"
                        + "  FROM Account\n"
                        + "where username = ? and password = ?";
                PreparedStatement stm = connection.prepareStatement(sql);
@@ -35,6 +39,12 @@ public class AccountDBContext extends DBContext<Account> {
                     account.setUsername(rs.getString("username"));
                     account.setDisplayname(rs.getString("displayname"));
                     account.setIsAdmin(rs.getBoolean("isAdmin"));
+                    Student s = new Student();
+                    s.setSid(rs.getString("sid"));
+                    account.setSid(s);
+                    Instructor i = new Instructor();
+                    i.setId(rs.getString("insid"));
+                    account.setInsid(i);
                     return account;
                }
           } catch (SQLException ex) {
@@ -67,7 +77,5 @@ public class AccountDBContext extends DBContext<Account> {
      public void delete(Account model) {
           throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
      }
-
-     
 
 }

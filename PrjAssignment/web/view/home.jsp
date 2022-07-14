@@ -3,7 +3,7 @@
     Created on : Jul 13, 2022, 2:18:48 AM
     Author     : PC
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -29,13 +29,12 @@
                 <h1>FPT University Academic Portal</h1>
             </div>
         </div>
-        
-    </body>
         <div class="Order">
             <div class="Order-title">
                 <h3 style="color: #56baed;">Reports</h3>
             </div>
-            <div class="Order-list">               
+            <div class="Order-list"> 
+                <li>${sessionScope.account.insid}</li>
                     <a href="timetable?name=${sessionScope.account.username}">Weekly timetable</a><br>
                     <c:if test="${sessionScope.account.isAdmin eq false}">
                         <a href="attendanceview?sid=${sessionScope.account.username}">Attendance report</a>

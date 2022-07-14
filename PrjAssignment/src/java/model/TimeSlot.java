@@ -5,13 +5,17 @@
 package model;
 
 import java.sql.Date;
+import java.sql.Time;
+
 /**
  *
  * @author PC
  */
 public class TimeSlot {
+
      private int slot;
-     private String time;
+     private Time startTime;
+     private Time endTime;
 
      public int getSlot() {
           return slot;
@@ -21,12 +25,20 @@ public class TimeSlot {
           this.slot = slot;
      }
 
-     public String getTime() {
-          return time;
+     public Time getStartTime() {
+          return startTime;
      }
 
-     public void setTime(String time) {
-          this.time = time;
+     public void setStartTime(Time startTime) {
+          this.startTime = startTime;
      }
-     
+
+     public Time getEndTime() {
+          return endTime;
+     }
+
+     public void setEndTime(Time endTime) {
+          this.endTime = endTime;
+     }
+
 }

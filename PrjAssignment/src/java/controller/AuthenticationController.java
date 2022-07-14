@@ -63,7 +63,7 @@ public class AuthenticationController extends HttpServlet {
           String username = request.getParameter("user");
           String password = request.getParameter("pass");
           AccountDBContext db = new AccountDBContext();
-          Account account = db.get(username, password);
+          Account account = db.getAccount(username, password);
           boolean status = true;
           if (account == null) {
                status = false;

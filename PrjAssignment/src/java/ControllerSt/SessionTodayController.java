@@ -5,12 +5,19 @@
 
 package ControllerSt;
 
+import dal.AccountDBContext;
+import dal.AttendanceDBContext;
+import dal.SessionDBContext;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import model.Session;
 
 /**
  *
@@ -53,8 +60,21 @@ public class SessionTodayController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
-    } 
+        LocalDate now = LocalDate.now();
+        Date date = Date.valueOf(now);
+        SessionDBContext sdb = new SessionDBContext();
+        //String instructorId = request.getAttribute("");
+        ArrayList<Session> sessionInADay = sdb.getDailySession(Date.valueOf("2022-06-01"),"sonnt5");
+        ArrayList<Boolean> check = new ArrayList<>();
+        AttendanceDBContext adb = new AttendanceDBContext();
+        
+        for (Session se : sessionInADay) {
+            check.add(adb.isAttendanceTaken(se.getSessionID()));
+        }
+        
+        request.setAttribute("sessions", sessionInADay);
+        request.setAttribute("check", check);
+        request.getRequestDispatcher("view/teacher/todaySession.jsp").forward(request, response);    } 
 
     /** 
      * Handles the HTTP <code>POST</code> method.
