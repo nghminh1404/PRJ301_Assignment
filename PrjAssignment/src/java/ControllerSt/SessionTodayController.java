@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import model.Account;
 import model.Session;
 
 /**
@@ -60,11 +61,12 @@ public class SessionTodayController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        Account account = (Account)request.getSession().getAttribute("account");
         LocalDate now = LocalDate.now();
         Date date = Date.valueOf(now);
         SessionDBContext sdb = new SessionDBContext();
         //String instructorId = request.getAttribute("");
-        ArrayList<Session> sessionInADay = sdb.getDailySession(Date.valueOf("2022-06-01"),"sonnt5");
+        ArrayList<Session> sessionInADay = sdb.getDailySession(date,account.getUsername());
         ArrayList<Boolean> check = new ArrayList<>();
         AttendanceDBContext adb = new AttendanceDBContext();
         

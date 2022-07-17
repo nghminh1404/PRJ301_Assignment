@@ -26,27 +26,43 @@ import model.TimeSlot;
 public class AttendanceDBContext extends DBContext<Attendance> {
 
      public void insertAttendance(ArrayList<Attendance> lists) {
-          for (Attendance list : lists) {
+          try {
+               connection.setAutoCommit(false);
+               for (Attendance list : lists) {
+                    try {
+                         String sql = "INSERT INTO [Attendance]\n"
+                                 + "           (studentID\n"
+                                 + "           ,sessionID\n"
+                                 + "           ,[status]\n"
+                                 + "           ,[description]\n"
+                                 + "           ,recordTime)\n"
+                                 + "     VALUES\n"
+                                 + "           (?\n"
+                                 + "           ,?\n"
+                                 + "           ,?\n"
+                                 + "           ,?\n"
+                                 + "           ,?)";
+                         PreparedStatement stm = connection.prepareStatement(sql);
+                         stm.setString(1, list.getStudentID().getSid());
+                         stm.setInt(2, list.getSessionID().getSessionID());
+                         stm.setBoolean(3, list.isStatus());
+                         stm.setString(4, list.getDescription());
+                         stm.setTime(5, list.getRecordTime());
+                         stm.executeUpdate();
+                    } catch (SQLException ex) {
+                         Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+               }
+          } catch (SQLException ex) {
+               Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
                try {
-                    String sql = "INSERT INTO [Attendance]\n"
-                            + "           (studentID\n"
-                            + "           ,sessionID\n"
-                            + "           ,[status]\n"
-                            + "           ,[description]\n"
-                            + "           ,recordTime)\n"
-                            + "     VALUES\n"
-                            + "           (?\n"
-                            + "           ,?\n"
-                            + "           ,?\n"
-                            + "           ,?\n"
-                            + "           ,?)";
-                    PreparedStatement stm = connection.prepareStatement(sql);
-                    stm.setString(1, list.getStudentID().getSid());
-                    stm.setInt(2, list.getSessionID().getSessionID());
-                    stm.setBoolean(3, list.isStatus());
-                    stm.setString(4, list.getDescription());
-                    stm.setTime(5, list.getRecordTime());
-                    stm.executeUpdate();
+                    connection.rollback();
+               } catch (SQLException ex1) {
+                    Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+               }
+          } finally {
+               try {
+                    connection.setAutoCommit(true);
                } catch (SQLException ex) {
                     Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
                }
@@ -54,17 +70,35 @@ public class AttendanceDBContext extends DBContext<Attendance> {
      }
 
      public void updateAttendance(ArrayList<Attendance> lists) {
-          for (Attendance list : lists) {
+          try {
+               connection.setAutoCommit(false);
+               for (Attendance list : lists) {
+                    try {
+                         String sql = "Update Attendance SET [status] = ?, [description]= ?, recordTime = ?\n"
+                                 + "WHERE studentID = ? AND sessionID = ?";
+                         PreparedStatement stm = connection.prepareStatement(sql);
+                         stm.setBoolean(1, list.isStatus());
+                         stm.setString(2, list.getDescription());
+                         stm.setTime(3, list.getRecordTime());
+                         stm.setString(4, list.getStudentID().getSid());
+                         stm.setInt(5, list.getSessionID().getSessionID());
+                         stm.executeUpdate();
+                    } catch (SQLException ex) {
+                         Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+               }
+               connection.commit();
+
+          } catch (SQLException ex) {
+               Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
                try {
-                    String sql = "Update Attendance SET [status] = ?, [description]= ?, recordTime = ?"
-                            + "WHERE studentID = ? AND sessionID = ?";
-                    PreparedStatement stm = connection.prepareStatement(sql);
-                    stm.setBoolean(1, list.isStatus());
-                    stm.setString(2, list.getDescription());
-                    stm.setTime(3, list.getRecordTime());
-                    stm.setString(4, list.getStudentID().getSid());
-                    stm.setInt(5, list.getSessionID().getSessionID());
-                    stm.executeUpdate();
+                    connection.rollback();
+               } catch (SQLException ex1) {
+                    Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex1);
+               }
+          } finally {
+               try {
+                    connection.setAutoCommit(true);
                } catch (SQLException ex) {
                     Logger.getLogger(AttendanceDBContext.class.getName()).log(Level.SEVERE, null, ex);
                }
