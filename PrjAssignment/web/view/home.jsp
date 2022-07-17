@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="../css/home.css" rel="stylesheet" type="text/css"/>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
     </head>
@@ -22,8 +23,7 @@
                 <li><a href="login">Sign out</a></li>
             </ul>
         </nav>
-        <!-- // -->
-        <!-- Banner -->
+
         <div id="banner">
             <div id="header">
                 <h1>FPT University Academic Portal</h1>
@@ -34,7 +34,7 @@
                 <h3 style="color: #56baed;">Reports</h3>
             </div>
             <div class="Order-list"> 
-                <li>${sessionScope.account.insid}</li>
+                <li>Hello ${sessionScope.account.displayname}</li>
                     <a href="timetable?name=${sessionScope.account.username}">Weekly timetable</a><br>
                     <c:if test="${sessionScope.account.isAdmin eq false}">
                         <a href="attendanceview?sid=${sessionScope.account.username}">Attendance report</a>

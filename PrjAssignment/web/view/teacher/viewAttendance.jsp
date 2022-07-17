@@ -9,8 +9,20 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <style>
+            .sortable table
+{
+    text-align: center;
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+    padding: 2px;
+    margin-left: 2px;
+}
+        </style>
+
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>View Attendance Page</title>
     </head>
     <body>
         <table class="sortable table" >
