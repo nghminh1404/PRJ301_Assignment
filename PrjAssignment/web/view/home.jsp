@@ -41,8 +41,7 @@
                     </c:if>
                     <c:if test="${sessionScope.account.isAdmin eq true}">
                         <a href="sessiontoday?instructorid=${sessionScope.account.username}">Take Attendance</a><br>                        
-                    </c:if>
-                    
+                    </c:if> 
             </div>                
         </div>
     

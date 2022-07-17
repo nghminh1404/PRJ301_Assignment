@@ -31,6 +31,18 @@
         <servlet-name>SessionTodayController</servlet-name>
         <servlet-class>ControllerSt.SessionTodayController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditAttendanceController</servlet-name>
+        <servlet-class>ControllerSt.EditAttendanceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewAttendanceController</servlet-name>
+        <servlet-class>ControllerSt.ViewAttendanceController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TakeAttendanceController</servlet-name>
+        <servlet-class>ControllerSt.TakeAttendanceController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ListControll</servlet-name>
         <url-pattern>/list</url-pattern>
@@ -54,6 +66,18 @@
     <servlet-mapping>
         <servlet-name>SessionTodayController</servlet-name>
         <url-pattern>/sessiontoday</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditAttendanceController</servlet-name>
+        <url-pattern>/EditAttendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewAttendanceController</servlet-name>
+        <url-pattern>/ViewAttendance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TakeAttendanceController</servlet-name>
+        <url-pattern>/TakeAttendance</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

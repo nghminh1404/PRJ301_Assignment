@@ -3,18 +3,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
+
 import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
+
 /**
  *
  * @author PC
  */
 public class Attendance {
+
      private Student studentID;
      private Session sessionID;
      private boolean status;
      private String description;
-     private Date recordTime;
+     private Time recordTime;
 
      public Student getStudentID() {
           return studentID;
@@ -40,11 +44,11 @@ public class Attendance {
           this.status = status;
      }
 
-     public Date getRecordTime() {
+     public Time getRecordTime() {
           return recordTime;
      }
 
-     public void setRecordTime(Date recordTime) {
+     public void setRecordTime(Time recordTime) {
           this.recordTime = recordTime;
      }
 
@@ -55,6 +59,5 @@ public class Attendance {
      public void setDescription(String description) {
           this.description = description;
      }
-     
-     
+
 }

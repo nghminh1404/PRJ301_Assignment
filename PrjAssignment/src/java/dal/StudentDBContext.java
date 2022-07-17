@@ -22,9 +22,9 @@ public class StudentDBContext extends DBContext<Student> {
      public ArrayList<Student> listByGroup(int gid) {
           ArrayList<Student> stds = new ArrayList<>();
           try {
-               String sql = "Select s.sid,s.MemberCode,s.FullName,g.GroupName\n"
+               String sql = "Select s.[sid],s.MemberCode,s.FirstName,s.MiddleName,s.LastName,s.FullName,g.gid,g.GroupName,s.Email\n"
                        + "from Student s INNER JOIN StGr sg ON s.sid= sg.sid INNER JOIN [Group] g ON g.gid=sg.gid\n"
-                       + "WHERE g.gid= ?";
+                       + " WHERE g.gid= ?";
                PreparedStatement stm = connection.prepareStatement(sql);
                stm.setInt(1, gid);
                ResultSet rs = stm.executeQuery();
@@ -33,8 +33,13 @@ public class StudentDBContext extends DBContext<Student> {
                     s.setSid(rs.getString("sid"));
                     s.setFullName(rs.getString("FullName"));
                     s.setMemberCode(rs.getString("MemberCode"));
+                    s.setEmail(rs.getString("Email"));
+                    s.setFirstName(rs.getString("FirstName"));
+                    s.setMiddleName(rs.getString("MiddleName"));
+                    s.setLastName(rs.getString("LastName"));
                     Group g = new Group();
                     g.setGroupname(rs.getString("GroupName"));
+                    g.setGid(rs.getInt("gid"));
                     s.setGroup(g);
                     stds.add(s);
                }
